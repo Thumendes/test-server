@@ -1,0 +1,16 @@
+name: deploy
+on: [push]
+jobs:
+  setup:
+    runs-on: ubuntu-latest
+    env:
+      Name: "Setting up"
+    steps:
+      - run: echo "🚀 $Name!"
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: "14"
+      - run: npm install
+      - run: npm run build
+      - run: npm run start
